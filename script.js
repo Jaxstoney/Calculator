@@ -29,6 +29,9 @@ let num1 = NaN
 let num2 = NaN
 let operator = null
 
+
+
+// depending on what button (operator) is clicked that operation/function will be executed/called
 function operate(operator, num1, num2) {
 
     switch (operator) {
@@ -48,7 +51,24 @@ function operate(operator, num1, num2) {
 
 }
 
-num3 = 10
-num4 = 6
 
-console.log(operate("-", num4,num3))
+let entry1=null;
+let entry2=null;
+
+const buttons = document.querySelectorAll(".digit");
+const displayElement = document.getElementById('display');
+
+buttons.forEach((button) => {
+
+  button.addEventListener("click", (event) => {
+    const digit = button.textContent;
+    displayElement.textContent += digit;
+    entry1 = displayElement.textContent;
+  });
+});
+
+
+
+console.log(entry1);
+
+
