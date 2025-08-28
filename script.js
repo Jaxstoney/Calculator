@@ -52,8 +52,8 @@ function operate(operator, num1, num2) {
 }
 
 
-let entry1;
-let entry2;
+let num1;
+let num2;
 let funct;
 
 const buttons = document.querySelectorAll(".digit");
@@ -92,7 +92,7 @@ const operation = document.querySelectorAll(".operator");
 operation.forEach((button) => {
     button.addEventListener("click", (event) => {
         funct = button.textContent;
-        entry1 = parseInt(displayElement.textContent);
+        num1 = parseInt(displayElement.textContent);
         displayElement.textContent = "";
     })
 })
@@ -104,10 +104,12 @@ operation.forEach((button) => {
 
 const Enter = document.querySelector(".enter");
 
-Enter.addEventListener("click", (event) => {
-    entry2 = parseInt(displayElement.textContent);
-    displayElement.textContent = String(operate(funct, entry1, entry2));
-})
+Enter.addEventListener("click", enterFunct) 
+
+function enterFunct() {
+    num2 = parseInt(displayElement.textContent);
+    displayElement.textContent = String(operate(funct, num1, num2));
+};
 
 
 
