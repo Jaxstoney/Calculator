@@ -25,9 +25,9 @@ function divide(num1, num2) {
 
 }
 
-let num1 = NaN
-let num2 = NaN
-let operator = null
+// let num1 = NaN
+// let num2 = NaN
+// let operator = null
 
 
 
@@ -52,23 +52,62 @@ function operate(operator, num1, num2) {
 }
 
 
-let entry1=null;
-let entry2=null;
+let entry1;
+let entry2;
+let funct;
 
 const buttons = document.querySelectorAll(".digit");
 const displayElement = document.getElementById('display');
+
+
+
+
+
 
 buttons.forEach((button) => {
 
   button.addEventListener("click", (event) => {
     const digit = button.textContent;
     displayElement.textContent += digit;
-    entry1 = displayElement.textContent;
   });
 });
 
 
 
-console.log(entry1);
+
+
+
+const clear = document.querySelector(".clear");
+    
+clear.addEventListener("click", (event) => {
+    displayElement.textContent = "";
+})
+
+
+
+
+
+const operation = document.querySelectorAll(".operator");
+    
+operation.forEach((button) => {
+    button.addEventListener("click", (event) => {
+        funct = button.textContent;
+        entry1 = parseInt(displayElement.textContent);
+        displayElement.textContent = "";
+    })
+})
+
+
+
+
+
+
+const Enter = document.querySelector(".enter");
+
+Enter.addEventListener("click", (event) => {
+    entry2 = parseInt(displayElement.textContent);
+    displayElement.textContent = String(operate(funct, entry1, entry2));
+})
+
 
 
