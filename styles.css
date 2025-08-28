@@ -69,4 +69,17 @@ button {
     height: 50px;
 }
 
+.display {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    height: 100%;
+    width: 80%;
+}
+
+div {
+    font-size:xx-large;
+    color: white;
+}
+
 
