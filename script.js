@@ -34,6 +34,11 @@ function divide(num1, num2) {
 // depending on what button (operator) is clicked that operation/function will be executed/called
 function operate(operator, num1, num2) {
 
+    // if (num2 === null) {
+    //     return num1;
+    // }
+
+
     switch (operator) {
     case "+":
         return add(num1,num2)
@@ -54,6 +59,7 @@ function operate(operator, num1, num2) {
 
 let num1;
 let num2;
+let number = "";
 let funct;
 
 const buttons = document.querySelectorAll(".digit");
@@ -68,7 +74,8 @@ buttons.forEach((button) => {
 
   button.addEventListener("click", (event) => {
     const digit = button.textContent;
-    displayElement.textContent += digit;
+    number += digit;
+    displayElement.textContent = number;
   });
 });
 
@@ -81,10 +88,10 @@ const clear = document.querySelector(".clear");
     
 clear.addEventListener("click", (event) => {
     displayElement.textContent = "";
+    number = "";
 })
 
-
-
+let numString;
 
 
 const operation = document.querySelectorAll(".operator");
@@ -92,14 +99,16 @@ const operation = document.querySelectorAll(".operator");
 operation.forEach((button) => {
     button.addEventListener("click", (event) => {
         funct = button.textContent;
-        num1 = parseInt(displayElement.textContent);
-        displayElement.textContent = "";
+        num1 = number;
+        number = "";
+
+
     })
 })
 
 
 
-
+let result;
 
 
 const Enter = document.querySelector(".enter");
@@ -107,8 +116,11 @@ const Enter = document.querySelector(".enter");
 Enter.addEventListener("click", enterFunct) 
 
 function enterFunct() {
-    num2 = parseInt(displayElement.textContent);
-    displayElement.textContent = String(operate(funct, num1, num2));
+    num2 = number;
+    result = operate(funct, parseInt(num1), parseInt(num2));
+    number = result;
+    displayElement.textContent = result;
+
 };
 
 
