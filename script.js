@@ -48,6 +48,7 @@ function operate(operator, num1, num2) {
         break;
     }
 
+
 }
 
 
@@ -55,7 +56,7 @@ function operate(operator, num1, num2) {
 let num1 = "";
 let number = "";
 let funct = "";
-let result;
+let result = "";
 
 
 
@@ -71,7 +72,6 @@ const Enter = document.querySelector(".enter");
 
 
 buttons.forEach((button) => {
-
   button.addEventListener("click", (event) => {
     const digit = button.textContent;
     number += digit;
@@ -95,19 +95,23 @@ clear.addEventListener("click", (event) => {
 
 
 
+
 operation.forEach((button) => {
     button.addEventListener("click", (event) => {
 
-        if (num1 !== "") {
+        if (num1 !== "" && number !== "") {
             result = operate(funct, parseFloat(num1), parseFloat(number));
+
             displayElement.textContent = result;
+                
+
             number = result;
             funct = "";
             num1 = "";
         }
 
         funct = button.textContent;
-        num1 = number;
+        if (number !== "") num1 = number;
         number = "";
     })
 })
@@ -120,12 +124,13 @@ operation.forEach((button) => {
 Enter.addEventListener("click", enterFunct) 
 
 function enterFunct() {
-
-    result = operate(funct, parseFloat(num1), parseFloat(number));
-    displayElement.textContent = result;            
-    number = result;
-    funct = "";
-    num1 = "";
+    if (num1 !== "" && number !== "") {
+        result = operate(funct, parseFloat(num1), parseFloat(number));
+        displayElement.textContent = result;            
+        number = "";
+        funct = "";
+        num1 = "";
+    }
 
 };
 
