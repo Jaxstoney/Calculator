@@ -25,19 +25,13 @@ function divide(num1, num2) {
 
 }
 
-// let num1 = NaN
-// let num2 = NaN
-// let operator = null
 
 
 
 // depending on what button (operator) is clicked that operation/function will be executed/called
 function operate(operator, num1, num2) {
 
-    // if (num2 === null) {
-    //     return num1;
-    // }
-
+    if (num1 === "" || num2 === "") return;
 
     switch (operator) {
     case "+":
@@ -57,13 +51,19 @@ function operate(operator, num1, num2) {
 }
 
 
-let num1;
-let num2;
+
+let num1 = "";
 let number = "";
-let funct;
+let funct = "";
+let result;
+
+
 
 const buttons = document.querySelectorAll(".digit");
 const displayElement = document.getElementById('display');
+const clear = document.querySelector(".clear");
+const operation = document.querySelectorAll(".operator");
+const Enter = document.querySelector(".enter");
 
 
 
@@ -84,42 +84,48 @@ buttons.forEach((button) => {
 
 
 
-const clear = document.querySelector(".clear");
     
 clear.addEventListener("click", (event) => {
     displayElement.textContent = "";
+    num1 = "";
     number = "";
 })
 
-let numString;
 
 
-const operation = document.querySelectorAll(".operator");
-    
+
+
 operation.forEach((button) => {
     button.addEventListener("click", (event) => {
+
+        if (num1 !== "") {
+            result = operate(funct, parseFloat(num1), parseFloat(number));
+            displayElement.textContent = result;
+            number = result;
+            funct = "";
+            num1 = "";
+        }
+
         funct = button.textContent;
         num1 = number;
         number = "";
-
-
     })
 })
 
 
 
-let result;
 
 
-const Enter = document.querySelector(".enter");
 
 Enter.addEventListener("click", enterFunct) 
 
 function enterFunct() {
-    num2 = number;
-    result = operate(funct, parseInt(num1), parseInt(num2));
+
+    result = operate(funct, parseFloat(num1), parseFloat(number));
+    displayElement.textContent = result;            
     number = result;
-    displayElement.textContent = result;
+    funct = "";
+    num1 = "";
 
 };
 
