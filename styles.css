@@ -58,6 +58,10 @@ body{
     align-items: center;
 }
 
+.zero {
+    grid-column: 2;
+}
+
 .operators-container {
     display: flex;
     flex-direction: column;
